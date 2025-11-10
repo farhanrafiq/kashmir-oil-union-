@@ -17,6 +17,7 @@ const DealerForm: React.FC<DealerFormProps> = ({ dealer, onSave, onCancel, formE
     primary_contact_email: '',
     primary_contact_phone: '',
     address: '',
+    username: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,6 +29,7 @@ const DealerForm: React.FC<DealerFormProps> = ({ dealer, onSave, onCancel, formE
             primary_contact_email: dealer.primary_contact_email,
             primary_contact_phone: dealer.primary_contact_phone,
             address: dealer.address,
+            username: dealer.primary_contact_email.split('@')[0], // Default username from email
         });
     } else {
         setFormData({
@@ -36,6 +38,7 @@ const DealerForm: React.FC<DealerFormProps> = ({ dealer, onSave, onCancel, formE
             primary_contact_email: '',
             primary_contact_phone: '',
             address: '',
+            username: '',
         });
     }
   }, [dealer]);
@@ -79,6 +82,14 @@ const DealerForm: React.FC<DealerFormProps> = ({ dealer, onSave, onCancel, formE
         onChange={handleChange}
         required
         disabled={isSubmitting}
+      />
+      <Input
+        label="Username"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+        required
+        disabled={isSubmitting || !!dealer} // Cannot change username after creation
       />
       <Input
         label="Contact Email (will be used for login)"
