@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import logger from '../utils/logger';
 
+interface AppError extends Error {
+  statusCode?: number;
+}
+
 export const errorHandler = (
   err: AppError,
   req: Request,
@@ -21,7 +25,7 @@ export const errorHandler = (
   });
 };
 
-export const notFoundHandler = (req: Request, res: Response): void => {
+export const notFoundHandler = (_req: Request, res: Response): void => {
   res.status(404).json({
     success: false,
     error: 'Route not found',
