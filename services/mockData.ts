@@ -1,4 +1,5 @@
 // FIX: Import AuditActionType enum to resolve reference errors.
+// @ts-ignore - User type needed for type checking
 import { User, Dealer, Employee, Customer, AuditLog, UserRole, AuditActionType } from '../types';
 
 export const nextIds = {

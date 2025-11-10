@@ -40,7 +40,7 @@ export const api = {
       currentUser = { ...user };
       delete (currentUser as any).password;
       addAuditLog({ action_type: AuditActionType.LOGIN, details: 'Admin logged in.' });
-      return currentUser;
+      return currentUser as User;
     }
     throw new Error("Invalid admin credentials.");
   },
@@ -48,11 +48,11 @@ export const api = {
   dealerLogin: async (email: string, password: string): Promise<User> => {
     await simulateDelay(500);
     const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.role === UserRole.DEALER);
-     if (user && user.password === password) {
+    if (user && user.password === password) {
       currentUser = { ...user };
       delete (currentUser as any).password;
-      addAuditLog({ action_type: AuditActionType.LOGIN, details: `Dealer logged in: ${user.name}` });
-      return currentUser;
+      addAuditLog({ action_type: AuditActionType.LOGIN, details: 'Dealer logged in.' });
+      return currentUser as User;
     }
     throw new Error("Invalid dealer credentials.");
   },
@@ -74,7 +74,7 @@ export const api = {
     delete (currentUser as any).password;
 
     addAuditLog({ action_type: AuditActionType.CHANGE_PASSWORD, details: 'User changed their password.' });
-    return currentUser;
+    return currentUser as User;
   },
   
   updateUserProfile: async (userId: UUID, data: { name: string; username: string }): Promise<User> => {
