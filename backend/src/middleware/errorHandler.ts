@@ -2,10 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import logger from '../utils/logger';
 
 export const errorHandler = (
-  err: Error,
+  err: AppError,
   req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ): void => {
   logger.error('Error:', {
     message: err.message,

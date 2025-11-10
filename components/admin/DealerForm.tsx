@@ -5,9 +5,9 @@ import Button from '../common/Button';
 
 interface DealerFormProps {
   dealer: Dealer | null;
-  onSave: (data: Omit<Dealer, 'id' | 'status' | 'created_at' | 'user_id'>) => Promise<void>;
+  onSave: (data: Omit<Dealer, 'id' | 'status' | 'created_at' | 'user_id'> & { username: string }) => Promise<void>;
   onCancel: () => void;
-  formError?: string;
+  formError: string | null;
 }
 
 const DealerForm: React.FC<DealerFormProps> = ({ dealer, onSave, onCancel, formError }) => {
