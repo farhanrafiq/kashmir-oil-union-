@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --project tsconfig.json && vite build",
+    "build:backend": "cd backend && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
